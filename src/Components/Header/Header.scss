@@ -1,0 +1,40 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+  width: 100%;
+  align-items: center;
+
+  .Header-Links {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .Header-Logo-Link {
+    text-decoration: none;
+    font-size: 1.7rem;
+    color: black;
+    margin-left: 2rem;
+  }
+  .Header-Link {
+    text-decoration: none;
+    color: black;
+    margin-right: 2rem;
+    font-size: 1.2rem;
+  }
+  .icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .login-user-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.sign-up {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60vh;
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}

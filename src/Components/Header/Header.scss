@@ -2,8 +2,9 @@
   display: flex;
   justify-content: space-between;
   height: 10vh;
-  width: 100%;
+  width: 80%;
   align-items: center;
+  margin: 0 auto;
 
   .Header-Links {
     display: flex;
@@ -16,7 +17,6 @@
     text-decoration: none;
     font-size: 1.7rem;
     color: black;
-    margin-left: 2rem;
   }
   .Header-Link {
     text-decoration: none;

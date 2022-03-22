@@ -1,76 +1,70 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
 import "./Signin.scss";
 import {
-  createUserDocFromAuth,
   signInWithGooglePopup,
   signInAuthUser,
 } from "../../Firebase/FirebaseUtils";
 
-export class SignIn extends Component {
-  constructor(props) {
-    super(props);
+const SignIn = () => {
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
-
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
+    const { email, password } = credentials;
+    clearForm();
     await signInAuthUser(email, password);
-    this.clearForm();
   };
 
-  clearForm = () => {
-    this.setState({ email: "", password: "" });
+  const clearForm = () => {
+    setCredentials({ email: "", password: "" });
   };
 
-  loginWithGooglePopup = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocFromAuth(user);
+  const loginWithGooglePopup = async () => {
+    await signInWithGooglePopup();
   };
 
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const { value, name } = e.target;
-    this.setState({
-      [name]: value,
-    });
+    setCredentials({ ...credentials, [name]: value });
   };
 
-  render() {
-    return (
-      <div className="sign-in">
-        <h2>I already have an account</h2>
-        <span>sign in with you email and password</span>
-        <form onSubmit={this.handleSubmit}>
-          <FormInput
-            name="email"
-            handleChange={this.handleChange}
-            value={this.state.email}
-            type="email"
-            label="email"
-          />
-          <FormInput
-            name="password"
-            handleChange={this.handleChange}
-            value={this.state.password}
-            type="password"
-            label="password"
-          />
-          <div className="buttons">
-            <Button type="submit">SignIn </Button>
-            <Button type="button" onClick={this.loginWithGooglePopup}>
-              SignIn with Google
-            </Button>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="sign-in">
+      <h2>I already have an account</h2>
+      <span>sign in with you email and password</span>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          name="email"
+          handleChange={handleChange}
+          value={credentials.email}
+          type="email"
+          label="email"
+        />
+        <FormInput
+          name="password"
+          handleChange={handleChange}
+          value={credentials.password}
+          type="password"
+          label="password"
+        />
+        <div className="buttons">
+          <Button type="submit">SignIn</Button>
+          <Button
+            buttontype="google"
+            type="button"
+            onClick={loginWithGooglePopup}
+          >
+            SignIn with Google
+          </Button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default SignIn;

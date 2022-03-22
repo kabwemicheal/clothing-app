@@ -1,20 +1,19 @@
-import { React, useState } from "react";
-import { COLLECTION_DATA } from "../../Data/CollectionData";
+import { React, useContext } from "react";
 import Preview from "../Preview/Preview";
+import { ProductContext } from "../../Contexts/ProductContext";
 
 const SharedPage = ({ title }) => {
-  let [collections, setCollections] = useState(COLLECTION_DATA);
+  const { products, setProducts } = useContext(ProductContext);
 
-  if (title) {
-    const filteredCollection = collections.filter(
-      (collection) => collection.title === title
-    );
-    collections = filteredCollection;
-  }
-
+  // if (title) {
+  //   const filteredProducts = products.filter(
+  //     (collection) => collection.title === title
+  //   );
+  //   setProducts({ products: filteredProducts });
+  // }
   return (
     <div>
-      {collections.map(({ id, ...collections }) => (
+      {products.map(({ id, ...collections }) => (
         <Preview key={id} {...collections} />
       ))}
     </div>

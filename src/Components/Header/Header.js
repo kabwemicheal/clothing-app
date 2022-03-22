@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../../Firebase/FirebaseUtils";
 import "../Header/Header.scss";
 import { AiOutlineUser } from "react-icons/ai";
+import { UserContext } from "../../Contexts/UserContext";
 
-function Header({ currentUser }) {
+const Header = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   return (
     <div className="Header">
       <div className="Header-Logo">
         <Link className="Header-Logo-Link" to="/">
-          Micheals
+          MELMIC
         </Link>
       </div>
       <div className="Header-Links">
@@ -25,21 +27,22 @@ function Header({ currentUser }) {
             <Link
               className="Header-Link"
               to="/"
-              onClick={() => {
-                auth.signOut();
+              onClick={async () => {
+                await auth.signOut();
+                setCurrentUser(null);
               }}
             >
-              Sign Out
+              Logout
             </Link>
           </span>
         ) : (
           <Link className="Header-Link" to="/signin">
-            SignIn
+            Login
           </Link>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default Header;

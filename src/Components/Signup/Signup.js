@@ -3,7 +3,6 @@ import FormInput from "../FormInput/FormInput";
 import Button from "../Button/Button";
 
 import {
-  signInWithGooglePopup,
   createAuthUserWithEmailAndPassword,
   createUserDocFromAuth,
 } from "../../Firebase/FirebaseUtils";
@@ -31,12 +30,12 @@ const Signup = () => {
     e.preventDefault();
     const { displayName, email, password } = credentials;
     try {
+      resetForm();
       const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password
       );
       await createUserDocFromAuth(user, { displayName });
-      resetForm();
     } catch (error) {
       switch (error.code) {
         case "auth/email-already-in-use":
@@ -78,10 +77,7 @@ const Signup = () => {
           label="password"
         />
         <div className="buttons">
-          <Button type="submit">Signup </Button>
-          <Button type="button" onClick={signInWithGooglePopup}>
-            SignIn with Google
-          </Button>
+          <Button type="submit">SIGN UP </Button>
         </div>
       </form>
     </div>

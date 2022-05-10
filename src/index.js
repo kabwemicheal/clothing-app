@@ -8,6 +8,7 @@ import { UserProvider } from "./Contexts/UserContext";
 import { HomePageDataProvider } from "./Contexts/HomePageContext";
 import reportWebVitals from "./reportWebVitals";
 import { ProductContextProvider } from "./Contexts/ProductContext";
+import { CartDropdownContextProvider } from "./Contexts/CartDropdownContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,7 +16,9 @@ ReactDOM.render(
       <UserProvider>
         <HomePageDataProvider>
           <ProductContextProvider>
-            <App />
+            <CartDropdownContextProvider>
+              <App />
+            </CartDropdownContextProvider>
           </ProductContextProvider>
         </HomePageDataProvider>
       </UserProvider>

@@ -4,9 +4,13 @@ import { auth } from "../../Firebase/FirebaseUtils";
 import "../Header/Header.scss";
 import { AiOutlineUser } from "react-icons/ai";
 import { UserContext } from "../../Contexts/UserContext";
+import CartIcon from "../CartIcon/CartIcon";
+import CartDropdown from "../CartDropdown/CartDropdown";
+import { CartDropdownContext } from "../../Contexts/CartDropdownContext";
 
 const Header = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { isCartOpen, setIsCartOpen } = useContext(CartDropdownContext);
   return (
     <div className="Header">
       <div className="Header-Logo">
@@ -40,7 +44,11 @@ const Header = () => {
             Login
           </Link>
         )}
+        <span onClick={() => setIsCartOpen(!isCartOpen)}>
+          <CartIcon />
+        </span>
       </div>
+      {isCartOpen && <CartDropdown />}
     </div>
   );
 };

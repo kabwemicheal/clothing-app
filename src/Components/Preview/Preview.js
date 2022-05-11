@@ -7,8 +7,8 @@ const Preview = ({ title, items }) => {
     <div className="collection-preview">
       <h1 className="title">{title}</h1>
       <div className="preview">
-        {items.map(({ id, ...items }) => (
-          <CollectionItem key={id} {...items} />
+        {items.map(({ ...items }) => (
+          <CollectionItem key={items.id} {...items} />
         ))}
       </div>
     </div>

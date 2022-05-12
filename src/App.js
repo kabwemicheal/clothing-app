@@ -11,6 +11,7 @@ import MensPage from "./Pages/MensPage/MensPage";
 import WomensPage from "./Pages/WomensPage/WomensPage";
 import SneakersPage from "./Pages/SneakersPage/SneakersPage";
 import JacketsPage from "./Pages/JacketsPage/JacketsPage";
+import CheckoutPage from "./Pages/CheckoutPage/CheckoutPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="womens" element={<WomensPage />} />
         <Route path="jackets" element={<JacketsPage />} />
         <Route path="sneakers" element={<SneakersPage />} />
+        <Route path="Checkout" element={<CheckoutPage />} />
       </Routes>
     </div>
   );

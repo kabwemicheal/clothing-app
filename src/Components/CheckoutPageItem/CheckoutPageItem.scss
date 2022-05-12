@@ -1,0 +1,15 @@
+.c {
+  display: flex;
+
+  margin-top: 20px;
+
+  img {
+    height: 200px;
+    width: 150px;
+    object-fit: contain;
+  }
+  .cart {
+    display: flex;
+    flex-direction: column;
+  }
+}

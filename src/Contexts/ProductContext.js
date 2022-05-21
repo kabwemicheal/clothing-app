@@ -1,13 +1,20 @@
-import { createContext, useState } from "react";
-import { COLLECTION_DATA } from "../Data/CollectionData";
+import { createContext, useState, useEffect } from "react";
+
+import { getCollections } from "../Firebase/FirebaseUtils";
 
 export const ProductContext = createContext({
-  products: [],
-  setProducts: () => [],
+  products: {},
 });
 
 export const ProductContextProvider = ({ children }) => {
-  const [products, setProducts] = useState(COLLECTION_DATA);
+  const [products, setProducts] = useState({});
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getCollections("categories");
+      setProducts(data);
+    };
+    getData();
+  }, []);
   const value = { products, setProducts };
   return (
     <ProductContext.Provider value={value}>{children}</ProductContext.Provider>

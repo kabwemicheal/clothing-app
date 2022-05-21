@@ -7,7 +7,16 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyDabB7JmWeOl5JqvMmMm2ijkCsHLYaB-1o",
@@ -61,5 +70,27 @@ export const signInAuthUser = async (email, password) => {
 };
 export const onAuthStateChangedListener = async (callback) =>
   onAuthStateChanged(auth, callback);
+
+// export const addCollection = async (collectionKey, itemsToAdd) => {
+//   const collectionRef = collection(db, collectionKey);
+//   const batch = writeBatch(db);
+//   itemsToAdd.forEach((item) => {
+//     const docRef = doc(collectionRef, item.title.toLowerCase());
+//     batch.set(docRef, item);
+//   });
+//   await batch.commit();
+// };
+
+export const getCollections = async (collectionKey) => {
+  const collectionRef = collection(db, collectionKey);
+  const queryRef = query(collectionRef);
+  const querySnapshot = await getDocs(queryRef);
+  const queryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title] = items;
+    return acc;
+  }, {});
+  return queryMap;
+};
 
 export default firebaseApp;

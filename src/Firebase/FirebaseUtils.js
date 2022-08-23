@@ -87,7 +87,7 @@ export const getCollections = async (collectionKey) => {
   const querySnapshot = await getDocs(queryRef);
   const queryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     const { title, items } = docSnapshot.data();
-    acc[title] = items;
+    acc[title.toLowerCase()] = items;
     return acc;
   }, {});
   return queryMap;

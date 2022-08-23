@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../../Firebase/FirebaseUtils";
 import "../Header/Header.scss";
@@ -11,11 +11,18 @@ import { CartDropdownContext } from "../../Contexts/CartDropdownContext";
 const Header = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const { isCartOpen, setIsCartOpen } = useContext(CartDropdownContext);
+  useEffect(() => {
+    window.addEventListener("click", () => {
+      if (isCartOpen) {
+        setIsCartOpen(!isCartOpen);
+      }
+    });
+  }, [isCartOpen]);
   return (
     <div className="Header">
       <div className="Header-Logo">
         <Link className="Header-Logo-Link" to="/">
-          MELMIC
+          Mirrors
         </Link>
       </div>
       <div className="Header-Links">
@@ -44,7 +51,12 @@ const Header = () => {
             Login
           </Link>
         )}
-        <span onClick={() => setIsCartOpen(!isCartOpen)}>
+        <span
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsCartOpen(!isCartOpen);
+          }}
+        >
           <CartIcon />
         </span>
       </div>

@@ -1,4 +1,6 @@
-.custom-button {
+import styled from "styled-components";
+
+export const BaseButton = styled.button`
   min-width: 165px;
   width: auto;
   height: 50px;
@@ -7,7 +9,8 @@
   padding: 0 35px 0 35px;
   font-size: 15px;
   color: white;
-  background-color: black;
+  background-color: ${({ buttonType }) =>
+    buttonType === "google" ? "#4285f4" : "black"};
   text-transform: uppercase;
   font-family: "Open Sans Condensed";
   font-weight: bolder;
@@ -19,8 +22,4 @@
     color: black;
     border: 1px solid black;
   }
-}
-
-.google {
-  background-color: #4285f4;
-}
+`;

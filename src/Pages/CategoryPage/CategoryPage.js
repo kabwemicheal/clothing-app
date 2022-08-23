@@ -1,23 +1,23 @@
 import React from "react";
-import CollectionItem from "../../Components/Items/Itemscollection";
-import "../CategoryPage/CategoryPage.scss";
+import CollectionItem from "../../Components/Items/ItemsCollection";
+import { CollectionPreview, Title, Preview } from "./CategoryPageStyles.js";
 import { useNavigate } from "react-router-dom";
 
 const CategoryPage = ({ title, product }) => {
   const navigate = useNavigate();
   return (
-    <div className="collection-preview">
-      <h1 className="title" onClick={() => navigate(`${title.toLowerCase()}`)}>
+    <CollectionPreview>
+      <Title onClick={() => navigate(`${title.toLowerCase()}`)}>
         {title.toUpperCase()}
-      </h1>
-      <div className="preview">
+      </Title>
+      <Preview>
         {product
           .filter((_, idx) => idx < 4)
           .map((product, index) => {
             return <CollectionItem key={index} {...product} />;
           })}
-      </div>
-    </div>
+      </Preview>
+    </CollectionPreview>
   );
 };
 

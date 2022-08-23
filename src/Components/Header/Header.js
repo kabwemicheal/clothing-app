@@ -1,7 +1,13 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { auth } from "../../Firebase/FirebaseUtils";
-import "../Header/Header.scss";
+import {
+  HeaderContainer,
+  HeaderLogo,
+  HeaderLink,
+  HeaderLinks,
+  IconLink,
+  LoginUserIcon,
+} from "./HeaderStyles.js";
 import { AiOutlineUser } from "react-icons/ai";
 import { UserContext } from "../../Contexts/UserContext";
 import CartIcon from "../CartIcon/CartIcon";
@@ -17,26 +23,19 @@ const Header = () => {
         setIsCartOpen(!isCartOpen);
       }
     });
-  }, [isCartOpen]);
+  });
   return (
-    <div className="Header">
-      <div className="Header-Logo">
-        <Link className="Header-Logo-Link" to="/">
-          Mirrors
-        </Link>
-      </div>
-      <div className="Header-Links">
-        <Link className="Header-Link" to="/shop">
-          Shop
-        </Link>
+    <HeaderContainer>
+      <HeaderLogo to="/">Mirrors</HeaderLogo>
+      <HeaderLinks>
+        <HeaderLink to="/shop">Shop</HeaderLink>
         {currentUser ? (
-          <span className="icon-link">
-            <span className="login-user-icon">
+          <IconLink>
+            <LoginUserIcon>
               <AiOutlineUser />
               {currentUser.displayName}
-            </span>
-            <Link
-              className="Header-Link"
+            </LoginUserIcon>
+            <HeaderLink
               to="/"
               onClick={async () => {
                 await auth.signOut();
@@ -44,12 +43,10 @@ const Header = () => {
               }}
             >
               Logout
-            </Link>
-          </span>
+            </HeaderLink>
+          </IconLink>
         ) : (
-          <Link className="Header-Link" to="/signin">
-            Login
-          </Link>
+          <HeaderLink to="/signin">Login</HeaderLink>
         )}
         <span
           onClick={(e) => {
@@ -59,9 +56,9 @@ const Header = () => {
         >
           <CartIcon />
         </span>
-      </div>
+      </HeaderLinks>
       {isCartOpen && <CartDropdown />}
-    </div>
+    </HeaderContainer>
   );
 };
 

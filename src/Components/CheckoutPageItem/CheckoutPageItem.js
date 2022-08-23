@@ -1,33 +1,36 @@
 import React, { useContext } from "react";
-import "../CheckoutPageItem/CheckoutPageItem.scss";
+import {
+  CheckoutItemContainer,
+  ImageContainer,
+  Name,
+  Price,
+  Quantity,
+  Value,
+  RemoveButton,
+  RightArrow,
+  LeftArrow,
+} from "./CheckoutPageItemStyles.js";
 import { CartDropdownContext } from "../../Contexts/CartDropdownContext";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const CheckoutPageItem = ({ ...item }) => {
   const { addItemToCart, subtractItemFromCart, removeItemFromCart } =
     useContext(CartDropdownContext);
   return (
-    <div className="checkout-item-container">
-      <div className="image-container">
+    <CheckoutItemContainer>
+      <ImageContainer>
         <img src={item.imageUrl} alt={item.name} />
-      </div>
-
-      <span className="name">{item.name}</span>
-
-      <span className="quantity">
-        <FaChevronLeft
-          className="arrow"
-          onClick={() => subtractItemFromCart(item)}
-        />
-        <span className="value">{item.quantity}</span>
-        <FaChevronRight className="arrow" onClick={() => addItemToCart(item)} />
-      </span>
-
-      <span className="price">${item.price}</span>
-      <div className="remove-button" onClick={() => removeItemFromCart(item)}>
+      </ImageContainer>
+      <Name>{item.name}</Name>
+      <Quantity>
+        <LeftArrow onClick={() => subtractItemFromCart(item)} />
+        <Value>{item.quantity}</Value>
+        <RightArrow onClick={() => addItemToCart(item)} />
+      </Quantity>
+      <Price>$ {item.price}</Price>
+      <RemoveButton onClick={() => removeItemFromCart(item)}>
         &#10005;
-      </div>
-    </div>
+      </RemoveButton>
+    </CheckoutItemContainer>
   );
 };
 

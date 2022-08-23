@@ -1,8 +1,12 @@
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../../Contexts/ProductContext";
 import { useContext, useState, useEffect } from "react";
-import "./Category.scss";
-import CollectionItem from "../Items/Itemscollection";
+import {
+  CategoryContainer,
+  CategoryGrid,
+  CategoryTitle,
+} from "./CategoryStyles.js";
+import CollectionItem from "../Items/ItemsCollection";
 
 const Category = () => {
   const { category } = useParams();
@@ -14,15 +18,15 @@ const Category = () => {
   }, [products, category]);
 
   return (
-    <div className="container">
-      <h1 className="title">{category.toUpperCase()}</h1>
-      <div className="preview">
+    <CategoryContainer>
+      <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
+      <CategoryGrid>
         {categoryProducts &&
           categoryProducts.map((product, index) => (
             <CollectionItem key={index} {...product} />
           ))}
-      </div>
-    </div>
+      </CategoryGrid>
+    </CategoryContainer>
   );
 };
 

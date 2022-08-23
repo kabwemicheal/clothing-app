@@ -1,16 +1,7 @@
 import React from "react";
-import "./Button.scss";
+import { BaseButton } from "./ButtonStyles.js";
 const Button = ({ children, ...props }) => {
-  return (
-    <button
-      className={`custom-button ${
-        props.buttontype === "google" ? "google" : ""
-      }`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
+  return <BaseButton {...props}>{children}</BaseButton>;
 };
 
 export default Button;

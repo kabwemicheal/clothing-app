@@ -2,17 +2,17 @@ import { React, useContext } from "react";
 
 import MenuItem from "../Menu/Menu";
 
-import "../Directory/Directory.scss";
+import { DirectoryMenu } from "./DirectoryStyles.js";
 import { HomePageDataContext } from "../../Contexts/HomePageContext";
 
 const Directory = () => {
   const { products } = useContext(HomePageDataContext);
   return (
-    <div className="directory-menu">
+    <DirectoryMenu>
       {products.map(({ id, ...sections }) => (
         <MenuItem key={id} {...sections} />
       ))}
-    </div>
+    </DirectoryMenu>
   );
 };
 

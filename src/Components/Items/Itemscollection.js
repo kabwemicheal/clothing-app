@@ -16,7 +16,7 @@ const CollectionItem = ({ ...product }) => {
 
   return (
     <CollectionItemContainer>
-      <ImageContainer imageUrl={product.imageUrl}></ImageContainer>
+      <ImageContainer imageUrl={product.imageUrl} />
       <CollectionFooter>
         <Name>{product.name}</Name>
         <Price>${product.price}</Price>

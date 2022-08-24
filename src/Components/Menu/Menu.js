@@ -13,7 +13,7 @@ const MenuItem = ({ title, imageUrl, size, id }) => {
   const navigate = useNavigate();
   return (
     <MenuItemContainer size={size}>
-      <BackgroundImage style={{ backgroundImage: `url(${imageUrl})` }} />
+      <BackgroundImage imageStr={imageUrl} />
       <MenuContent onClick={() => navigate(`shop/${title.toLowerCase()}`)}>
         <MenuTitle>{title.toUpperCase()}</MenuTitle>
         <MenuSubtitle>Shop now</MenuSubtitle>

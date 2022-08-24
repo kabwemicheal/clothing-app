@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../../Contexts/ProductContext";
+import CollectionItem from "../Items/ItemsCollection";
+
 import {
   CategoryContainer,
   CategoryGrid,
   CategoryTitle,
 } from "./CategoryStyles.js";
-import CollectionItem from "../Items/ItemsCollection";
 
 const Category = () => {
   const { category } = useParams();

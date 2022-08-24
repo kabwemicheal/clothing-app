@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import { HOME_PAGE_DATA } from "../Data/CollectionData";
 
 export const HomePageDataContext = createContext({

@@ -1,6 +1,6 @@
+import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../../Contexts/ProductContext";
-import { useContext, useState, useEffect } from "react";
 import {
   CategoryContainer,
   CategoryGrid,

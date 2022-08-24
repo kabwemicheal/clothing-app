@@ -1,4 +1,6 @@
+import React from "react";
 import { CartItemContainer, Name, ItemDetails } from "./CartItemStyles.js";
+
 const CartItem = ({ ...item }) => {
   return (
     <CartItemContainer>

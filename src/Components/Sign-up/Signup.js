@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormInput from "../FormInput/FormInput";
 import Button from "../Button/Button";
-import { SignInContainer, Buttons } from "../SignIn/SignInStyles";
+import { SignInContainer, Buttons } from "../Sign-in/SignInStyles";
 
 import {
   createAuthUserWithEmailAndPassword,

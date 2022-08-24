@@ -1,6 +1,6 @@
 import React from "react";
-import SignIn from "../../Components/SignIn/SignIn";
-import Signup from "../../Components/Signup/Signup";
+import SignIn from "../../Components/Sign-in/SignIn";
+import Signup from "../../Components/Sign-up/Signup";
 import { SignInUpContainer } from "./SignInSignUpPageStyles.js";
 function SignInSignUpPage() {
   return (
